@@ -10,7 +10,7 @@ function App() {
       <GlobalStyles />
       <Nav />
       <Routes>
-        <Route path="/" element={<Home />}></Route>
+        <Route path="/GameRadar-Hub" element={<Home />}></Route>
         <Route path="/game/:id" element={<Home />}></Route>
       </Routes>
     </div>
