@@ -26,6 +26,8 @@ const Home = () => {
     (state) => state.games
   );
 
+  
+
   return (
     <GameList variants={fadeIn} initial="hidden" animate="show">
       <LayoutGroup>
@@ -36,7 +38,9 @@ const Home = () => {
           <div className="searched">
             <h2>Searched Games</h2>
             <Games>
-              {searched.map((game) => (
+              {searched
+              .filter((game) => !game.tags || game.tags.every((tag) => !['NSFW', 'Nudity', 'Sexual Content', 'hentai', ].includes(tag.name)))
+              .map((game) => (
                 <Game
                   key={game.id}
                   name={game.name}
@@ -52,7 +56,9 @@ const Home = () => {
         )}
         <h2>Upcoming Games</h2>
         <Games>
-          {upcoming.map((game) => (
+          {upcoming
+          .filter((game) => !game.tags || game.tags.every((tag) => !['NSFW', 'Nudity', 'Sexual Content', 'hentai', ].includes(tag.name)))
+          .map((game) => (
             <Game
               key={game.id}
               name={game.name}
@@ -65,7 +71,9 @@ const Home = () => {
 
         <h2>Popular Games</h2>
         <Games>
-          {popular.map((game) => (
+          {popular
+          .filter((game) => !game.tags || game.tags.every((tag) => !['NSFW', 'Nudity', 'Sexual Content', 'hentai', ].includes(tag.name)))
+          .map((game) => (
             <Game
               key={game.id}
               name={game.name}
@@ -78,13 +86,16 @@ const Home = () => {
 
         <h2>New Games</h2>
         <Games>
-          {newGames.map((game) => (
+          {newGames
+          .filter((game) => !game.tags || game.tags.every((tag) => !['NSFW', 'Nudity', 'Sexual Content', 'hentai', ].includes(tag.name)))
+          .map((game) => (
             <Game
               key={game.id}
               name={game.name}
               released={game.released}
               id={game.id}
               image={game.background_image}
+              // tags={game.tags ? game.tags.map((tag) => tag.name) : []}
             />
           ))}
         </Games>
